@@ -1,0 +1,92 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-if.html">
+<link rel="import" href="card-style.html">
+<dom-module id="card-component"> 
+    <template> 
+        <style include="card-style">            
+        </style>
+        
+        <section class="card">
+            <button on-click="_toggleView" class="card-toggle" title="toggle view"></button>
+            <div class="card-wrapper">                   
+              <figure class="card-portrait">
+                <img src=[[data.image]]>                      
+              </figure>
+              <header class="card-header">
+                <h3>[[data.nickname]]</h3>
+                <em>[[data.name]]</em>
+              </header>
+              <div class="card-details">
+                <template is="dom-if" if="{{hasSessions}}">
+                <p>
+                    <h4 class="label">Sessions:</h4> 
+                    <span class="session">[[sessions]]</span>
+                </p>
+               </template>
+                <h4>Occupations:</h4> 
+                <ul> 
+                  <dom-repeat items="{{occupation}}"> 
+                    <template> 
+                        <li>{{item}}</li>
+                    </template> 
+                  </dom-repeat> 
+                </ul>
+                <p>
+                <h4 class="label">Played by:</h4> 
+                <span>[[data.playedBy]]</span> 
+            </p>
+            <p> 
+                <h4 class="label">Status:</h4> 
+                <span>[[data.status]]</span> 
+            </p> 
+              </div>
+            </div>    
+            
+        </section> 
+    </template>
+
+    <script> 
+        class CardComponent extends Polymer.Element {
+            static get is() {
+                return "card-component";
+            }
+            static get properties() {
+                return {
+                    data: {
+                        type: Object
+                    },
+                    _fullview:{
+                        type:Boolean,
+                        value:false
+                    },
+                    occupation: Array,
+                    sessions: String,
+                    hasSessions: {
+                        type: Boolean,
+                        value: false
+                    }
+                };
+            }
+            constructor() {
+                super();
+            }
+
+            _toggleView(evt) {
+                this.classList.toggle('full');
+            }
+
+            getSessions(){  
+                return this.data.sessions.join(', ');
+            }
+            ready() {
+                super.ready();
+                this.occupation = this.data.occupation;
+                this.hasSessions = this.data.sessions.length > 0 ;
+                this.sessions = this.getSessions();
+            }
+        }
+
+    customElements.define(CardComponent.is, CardComponent);
+    </script>
+</dom-module> 

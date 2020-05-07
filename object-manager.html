@@ -1,0 +1,61 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-if.html">
+<link rel="import" href="object-dm.html">
+<link rel="import" href="card-component.html">
+<dom-module id="object-manager">
+  <template> 
+    <object-dm id="my-data-manager" 
+        params="[[_params]]" 
+        headers="[[_headers]]" 
+        path="[[_path]]">          
+    </object-dm>
+    <template is="dom-if" if="{{_isDataLoaded}}">     
+       <card-component data={{_result}}></card-component>        
+    </template>        
+  </template>  
+  <script>   
+       class ObjectManager  extends Polymer.Element {
+          static get is() {
+            return 'object-manager';
+          }
+           static get properties() {
+            return {             
+              _path:String,
+              _headers:String,
+              _isDataLoaded: Boolean,
+              _params:{
+                type:String,
+                notify: true
+              },
+            };
+          }          
+          constructor() {
+            super();
+            this._params = "";
+            this._headers = "";
+            this._path = this.path;
+            this._result = "";
+            this._isDataLoaded = false;
+          }
+          ready() {
+              super.ready();
+              this.addEventListener('page-list-event', event => this._pageList(event));
+              this.addEventListener('page-list-event-error', event => this._pageListError(event));
+              this.addEventListener('page-search-event', event => this._pageSearch(event));
+           }
+          
+          _pageList(event) {
+            this._result = event.detail.data[0];
+            this._isDataLoaded = event.detail.data[0];           
+          }
+           _pageSearch(event) { 
+             this._params = event.detail;             
+           }          
+          _pageListError(event) {
+            console.log(event)
+           }
+        }
+        customElements.define(ObjectManager.is, ObjectManager);
+     
+   </script>
+<\dom-module>
