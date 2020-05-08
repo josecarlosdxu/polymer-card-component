@@ -1,3 +1,4 @@
+@import 'normalize.css';
 :root {
 	--cardWidth: 12rem;
 	--gridGap: 2.5rem;
