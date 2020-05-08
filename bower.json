@@ -1,8 +1,23 @@
 {
-  "name": "data-provider",
+  "name": "polymer-card-component",
+  "homepage": "https://github.com/josecarlosdxu/polymer-card-component",
+  "authors": [
+    "Madrid Pepín <jamd@gft.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
-  },
-  "private": true
+    "shadycss": "webcomponents/shadycss#^v1.1.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
+    "polymer": "Polymer/polymer#^2.0.0"
+  }
 }
