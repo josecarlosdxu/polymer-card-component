@@ -1,4 +1,5 @@
-# polymer-card-component
+# Cells Card
+
 Polymer 2 Card Component
 
 ```bash

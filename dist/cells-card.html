@@ -1,10 +1,10 @@
 <link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../polymer/lib/elements/dom-if.html">
-<link rel="import" href="card-style.html">
-<dom-module id="card-component"> 
+<link rel="import" href="cells-card-style.html">
+<dom-module id="cells-card"> 
     <template> 
-        <style include="card-style">            
+        <style include="cells-card-style">            
         </style>        
         <section class="card">
             <button on-click="_toggleView" class="card-toggle" title="toggle view"></button>
@@ -46,9 +46,9 @@
     </template>
 
     <script> 
-        class CardComponent extends Polymer.Element {
+        class CellsCard extends Polymer.Element {
             static get is() {
-                return "card-component";
+                return "cells-card";
             }
             static get properties() {
                 return {
@@ -86,6 +86,6 @@
             }
         }
 
-    customElements.define(CardComponent.is, CardComponent);
+    customElements.define(CellsCard.is, CellsCard);
     </script>
 </dom-module> 
