@@ -1,0 +1,21 @@
+{
+"suites": [
+    "test/index.html"
+  ],
+  "plugins": {
+    "istanbub": {
+      "local": {
+        "browsers": ["chrome"]
+      },
+      "dir": "./coverage",
+      "reporters": [ "text-summary", "lcov" ],
+      "include": [
+        "**/*.html"
+      ],
+      "exclude": [
+        "**/test/**",
+        "**/bower_components/**"
+      ]
+    }
+  }
+}
